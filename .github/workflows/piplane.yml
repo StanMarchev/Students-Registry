@@ -8,17 +8,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build-test:
     runs-on: ubuntu-latestses/
-
     steps:
-    - uses: actions/checkout@v3
+    - name: Check the repostory
+      uses: actions/checkout@v3
     - name: Use Node.js 18
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Install independecies
+      run: npm install
+    - name: Run tests
+      run: npm test
